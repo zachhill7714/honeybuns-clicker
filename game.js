@@ -62,7 +62,7 @@ function gameLoop() {
 }
 
 function loop() {
-    setTimeout(gameLoop(), 1000. / game.fps)
+    setTimeout(gameLoop(), (1000 / game.fps))
 }
 
 function update() {
