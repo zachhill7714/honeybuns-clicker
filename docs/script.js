@@ -1,44 +1,44 @@
 var game = {
     buns: 0.0,
     multiplier: 1.0,
-    buildings = {
-        autoclicker = {
+    buildings: {
+        autoclicker: {
             amount: 0,
             buns: 0.1,
             cost: 10,
             multiplier: 1.0
         },
-        children = {
+        children: {
             amount: 0,
             buns: 0.8,
             cost: 50,
             multiplier: 1.0
         },
-        dude = {
+        dude: {
             amount: 0,
             buns: 6,
             cost: 600,
             multiplier: 1.0
         },
-        feet = {
+        feet: {
             amount: 0,
             buns: 20,
             cost: 4000,
             multiplier: 1.0
         },
-        cookie = {
+        cookie: {
             amount: 0,
             buns: 104,
             cost: 44000,
             multiplier: 1.0
         },
-        shinobi = {
+        shinobi: {
             amount: 0,
             buns: 563,
             cost: 500000,
             multiplier: 1.0
         },
-        salveritie = {
+        salveritie: {
             amount: 0,
             buns: 2925,
             cost: 6500000,
