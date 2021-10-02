@@ -54,8 +54,22 @@ function click() {
 
 function gameLoop() {
     delta = 0
-    for (i=0;i<Object.keys(game.buildings).length;i++) {
-        delta += game.buildings[i].buns * game.buildings[i].multiplier
+    am = 0
+    bu = 0
+    mu = 0
+    for ([key, value] of Object.entries(game.buildings)) {
+        for ([k, v] of Object.entries(game.buildings[key])) {
+            if (k == "amount") {
+                am = v
+            }
+            if (k == "buns") {
+                bu = v
+            }
+            if (k == "multiplier") {
+                mu = v
+            }
+        }
+        delta += am * bu * mu
     }
     game.buns += (1. / game.fps) * delta
     update()
@@ -66,7 +80,6 @@ function loop() {
 }
 
 function update() {
-    document.getElementById("buns").innerHTML = game.buns + " honeybuns"
+    document.getElementById("buns").innerHTML = game.buns + " honeybuns baked"
 }
-
 loop()
