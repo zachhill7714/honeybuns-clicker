@@ -59,7 +59,7 @@ function buyBuilding(building) {
             document.getElementById("buns").innerHTML = game.buns.toFixed(1) + " honeybuns baked"
             document.getElementById(key + "s").innerHTML = value["amount"] + " " + key + ", cost: " + value["cost"].toFixed(1)
         }
-        game += value["amount"] * value["buns"] * value["multiplier"]
+        game.cps += value["amount"] * value["buns"] * value["multiplier"]
     }
     document.getElementById("cps").innerHTML = game.cps.toFixed(1) + " cps"
 }
