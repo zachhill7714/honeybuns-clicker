@@ -5,51 +5,70 @@ var game = {
         autoclicker: {
             amount: 0,
             buns: 0.1,
-            cost: 10,
+            cost: 15,
             multiplier: 1.0
         },
         children: {
             amount: 0,
             buns: 0.8,
-            cost: 50,
+            cost: 80,
             multiplier: 1.0
         },
         dude: {
             amount: 0,
             buns: 6,
-            cost: 600,
+            cost: 700,
             multiplier: 1.0
         },
         feet: {
             amount: 0,
             buns: 20,
-            cost: 4000,
+            cost: 4300,
             multiplier: 1.0
         },
         cookie: {
             amount: 0,
             buns: 104,
-            cost: 44000,
+            cost: 51000,
             multiplier: 1.0
         },
         shinobi: {
             amount: 0,
             buns: 563,
-            cost: 500000,
+            cost: 640000,
             multiplier: 1.0
         },
         salveritie: {
             amount: 0,
             buns: 2925,
-            cost: 6500000,
+            cost: 7200000,
             multiplier: 1.0
         }
     },
-    fps: 30
+    fps: 15
 }
 
-function click() {
-    game.buns += (game.multiplier)
+function buyBuilding(building) {
+    var cps = 0
+    for ([key, value] of Object.entries(game.buildings)) {
+        if(key == building && game.buns >= value["cost"]) {
+            value["amount"] += 1
+            game.buns -= value["cost"]
+            value["cost"] *= 1.15
+            document.getElementById("buns").innerHTML = game.buns.toFixed(1) + " honeybuns baked"
+            document.getElementById(key + "s").innerHTML = value["amount"] + " " + key + ", cost: " + value["cost"].toFixed(1)
+        }
+        cps += value["amount"] * value["buns"] * value["multiplier"]
+    }
+    document.getElementById("cps").innerHTML = cps.toFixed(1) + " cps"
+}
+
+var thing = document.getElementById("buns")
+
+function glick() {
+    game.buns += game.multiplier
+    thing = document.getElementById("buns")
+    thing.innerHTML = game.buns.toFixed(1) + " honeybuns baked";
 }
 
 function gameLoop() {
@@ -69,17 +88,10 @@ function gameLoop() {
                 mu = v
             }
         }
-        delta += am * bu * mu
+        delta += (am * bu * mu)
     }
     game.buns += (1. / game.fps) * delta
-    update()
+    document.getElementById("buns").innerHTML = game.buns.toFixed(1) + " honeybuns baked"
 }
 
-function loop() {
-    setTimeout(gameLoop(), (1000 / game.fps))
-}
-
-function update() {
-    document.getElementById("buns").innerHTML = game.buns + " honeybuns baked"
-}
-loop()
+setInterval(gameLoop, Math.round(1000 / game.fps))
