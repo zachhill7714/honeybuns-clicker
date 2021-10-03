@@ -99,8 +99,6 @@ function gameLoop() {
     }
 }
 
-setInterval(gameLoop, Math.round(1000 / game.fps))
-
 var saveGameLoop = window.setInterval(function() {
     localStorage.setItem("honeybunsClickerSave", JSON.stringify(game))
   }, 30000)
@@ -109,3 +107,5 @@ var savegame = JSON.parse(localStorage.getItem("honeybunsClickerSave"))
 if (savegame !== null) {
   game = savegame
 }
+
+setInterval(gameLoop, Math.round(1000 / game.fps))
