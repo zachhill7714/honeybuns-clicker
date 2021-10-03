@@ -92,6 +92,10 @@ function gameLoop() {
     }
     game.buns += (1. / game.fps) * delta
     document.getElementById("buns").innerHTML = game.buns.toFixed(1) + " honeybuns baked"
+    document.getElementById("cps").innerHTML = cps.toFixed(1) + " cps"
+    for ([key, value] of Object.entries(game.buildings)) {
+        document.getElementById(key + "s").innerHTML = value["amount"] + " " + key + ", cost: " + value["cost"].toFixed(1)
+    }
 }
 
 setInterval(gameLoop, Math.round(1000 / game.fps))
