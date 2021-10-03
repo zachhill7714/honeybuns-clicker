@@ -1,5 +1,6 @@
 var game = {
     buns: 0.0,
+    cps: 0.0,
     multiplier: 1.0,
     buildings: {
         autoclicker: {
@@ -49,7 +50,7 @@ var game = {
 }
 
 function buyBuilding(building) {
-    var cps = 0
+    game.cps =  0
     for ([key, value] of Object.entries(game.buildings)) {
         if(key == building && game.buns >= value["cost"]) {
             value["amount"] += 1
@@ -58,9 +59,9 @@ function buyBuilding(building) {
             document.getElementById("buns").innerHTML = game.buns.toFixed(1) + " honeybuns baked"
             document.getElementById(key + "s").innerHTML = value["amount"] + " " + key + ", cost: " + value["cost"].toFixed(1)
         }
-        cps += value["amount"] * value["buns"] * value["multiplier"]
+        game += value["amount"] * value["buns"] * value["multiplier"]
     }
-    document.getElementById("cps").innerHTML = cps.toFixed(1) + " cps"
+    document.getElementById("cps").innerHTML = game.cps.toFixed(1) + " cps"
 }
 
 var thing = document.getElementById("buns")
@@ -92,7 +93,7 @@ function gameLoop() {
     }
     game.buns += (1. / game.fps) * delta
     document.getElementById("buns").innerHTML = game.buns.toFixed(1) + " honeybuns baked"
-    document.getElementById("cps").innerHTML = cps.toFixed(1) + " cps"
+    document.getElementById("cps").innerHTML = game.cps.toFixed(1) + " cps"
     for ([key, value] of Object.entries(game.buildings)) {
         document.getElementById(key + "s").innerHTML = value["amount"] + " " + key + ", cost: " + value["cost"].toFixed(1)
     }
